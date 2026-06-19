@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Natraj Looping Project</title>
   <style>
-    /* Global layout resets */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100vh; overflow: hidden; background: #000; font-family: system-ui, sans-serif; }
     
-    /* Horizontal snap slider wrapper */
     .slider-container {
       display: flex;
       width: 100%;
@@ -20,11 +18,9 @@
       -webkit-overflow-scrolling: touch;
     }
     
-    /* Hide native browser scrollbar tracks */
     .slider-container::-webkit-scrollbar { display: none; }
     .slider-container { -ms-overflow-style: none; scrollbar-width: none; }
     
-    /* Direct layout requirements for pages */
     .page-slide {
       flex: 0 0 100%;
       width: 100%;
@@ -39,18 +35,20 @@
       padding: 20px;
     }
     
-    /* Text layout display elements */
+    /* Sleek black card overlay with 30% opacity and white text */
     .text-card {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(0, 0, 0, 0.30);
       padding: 35px 25px;
       border-radius: 16px;
       max-width: 480px;
       width: 100%;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
       text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border outline */
+      backdrop-filter: blur(8px); /* Optional: Softens background behind card */
     }
-    .text-card h2 { margin-bottom: 12px; color: #111; font-size: 26px; font-weight: 700; }
-    .text-card p { color: #444; line-height: 1.6; font-size: 16px; }
+    .text-card h2 { margin-bottom: 12px; color: #ffffff; font-size: 26px; font-weight: 700; }
+    .text-card p { color: #ffffff; line-height: 1.6; font-size: 16px; opacity: 0.9; }
   </style>
 </head>
 <body>
@@ -121,21 +119,34 @@
       </div>
     </div>
 
+    <!-- HIDDEN CLONE OF PAGE 1 (Handles the loop trick) -->
+    <div class="page-slide" style="background-image: url('bg1.jpg');" id="clonePage">
+      <div class="text-card">
+        <h2>Page 1</h2>
+        <p>Swipe left to advance forward to page 2.</p>
+      </div>
+    </div>
+
   </div>
 
   <script>
     const slider = document.getElementById('mainSlider');
+    let isResetting = false;
     
     slider.addEventListener('scroll', () => {
-      const maxScroll = slider.scrollWidth - slider.clientWidth;
+      if (isResetting) return;
       
-      // Infinite Loop Logic
-      if (slider.scrollLeft >= maxScroll) {
-        // When swiping past page 11, jump instantly to page 1
+      const pageWidth = slider.clientWidth;
+      const totalPages = 11; // Number of unique pages
+      
+      // If user lands on the hidden clone (index 11)
+      if (slider.scrollLeft >= pageWidth * totalPages) {
+        isResetting = true;
+        // Instantly reset position back to real Page 1 without animation
         slider.scrollTo({ left: 0, behavior: 'instant' });
-      } else if (slider.scrollLeft <= 0) {
-        // If swiping backwards past page 1, jump instantly to page 11
-        slider.scrollTo({ left: maxScroll, behavior: 'instant' });
+        
+        // Brief timeout prevents browser scroll bounce glitching
+        setTimeout(() => { isResetting = false; }, 50);
       }
     });
   </script>

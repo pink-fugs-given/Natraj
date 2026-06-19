@@ -5,14 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Natraj Custom Fonts Project</title>
   
-  <!-- IMPORTS: Google Fonts & CDN Fonts for Custom Typefaces -->
+  <!-- IMPORTS: Google Fonts & Greenth CDN -->
   <link rel="preconnect" href="https://googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
   <link href="https://googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://cdnfonts.com" rel="stylesheet">
   <link href="https://cdnfonts.com" rel="stylesheet">
 
   <style>
+    /* REQ FIX: Pulls your uploaded local font file directly from your repository */
+    @font-face {
+      font-family: 'LocalSamarkan';
+      src: url('samarkan.TTF') format('truetype'); /* Match your exact filename/extension here if it is .otf */
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100vh; overflow: hidden; background: #000; }
     
@@ -37,13 +42,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-size: contain;     /* Keeps original image aspect shapes intact */
+      background-size: contain;     
       background-position: center;  
       background-repeat: no-repeat; 
       padding: 20px;
     }
     
-    /* REQ FIX: Black glass card layout with 30% opacity */
+    /* REQ FIX: Sharp glass card layout with no background blur */
     .text-card {
       background: rgba(0, 0, 0, 0.30);
       padding: 35px 25px;
@@ -55,19 +60,20 @@
       border: 1px solid rgba(255, 255, 255, 0.15); 
     }
     
-    /* REQ FIX: Specific Title Typography Overrides */
+    /* REQ FIX: Custom font mapping and size set to 64px (Doubled) */
     .font-samarkan {
-      font-family: 'Samarkan', sans-serif !important;
+      font-family: 'LocalSamarkan', sans-serif !important;
       font-weight: normal;
-      font-size: 64px;
-      letter-spacing: 1px;
+      font-size: 64px; /* Doubled from 32px */
+      letter-spacing: 2px;
+      line-height: 1.1; /* Prevents giant text from overlapping its card layout */
     }
     
     .font-greenth {
       font-family: 'Greenth Diagonals', 'Greenth', sans-serif !important;
       font-weight: bold;
       font-size: 28px;
-      text-transform: uppercase; /* Looks best for display font headers */
+      text-transform: uppercase; 
     }
 
     .text-card h2 {
@@ -75,7 +81,6 @@
       color: #ffffff; 
     }
     
-    /* REQ FIX: Global Paragraph Body Typography set to Old Standard */
     .text-card p { 
       font-family: 'Old Standard TT', serif;
       color: #ffffff; 
@@ -89,7 +94,7 @@
 
   <div class="slider-container" id="mainSlider">
     
-    <!-- PAGE 1: Features Samarkan Title + Old Standard Body -->
+    <!-- PAGE 1 -->
     <div class="page-slide" style="background-image: url('PASTE_PAGE_1_DIRECT_LINK_HERE');">
       <div class="text-card">
         <h2 class="font-samarkan">Page 1</h2>
@@ -97,7 +102,7 @@
       </div>
     </div>
 
-    <!-- PAGE 2: Features Greenth Diagonal Title + Old Standard Body -->
+    <!-- PAGE 2 -->
     <div class="page-slide" style="background-image: url('PASTE_PAGE_2_DIRECT_LINK_HERE');">
       <div class="text-card">
         <h2 class="font-greenth">Page 2</h2>
@@ -146,7 +151,7 @@
       </div>
     </div>
 
-    <!-- SEAMLESS HIDDEN LOOP CLONE: Must mimic Page 1 exactly -->
+    <!-- SEAMLESS HIDDEN LOOP CLONE -->
     <div class="page-slide" style="background-image: url('PASTE_PAGE_1_DIRECT_LINK_HERE');">
       <div class="text-card">
         <h2 class="font-samarkan">Page 1</h2>

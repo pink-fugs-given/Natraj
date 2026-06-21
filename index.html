@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Natraj Custom Fonts Project</title>
+  <title>Natraj - A never ending experience</title>
   
-  <!-- IMPORTS: Google Fonts & Greenth CDN -->
+  <!-- IMPORTS: Google Fonts for Old Standard Body Text -->
   <link rel="preconnect" href="https://googleapis.com">
   <link rel="preconnect" href="https://gstatic.com" crossorigin>
   <link href="https://googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://cdnfonts.com" rel="stylesheet">
 
   <style>
-    /* REQ FIX: Pulls your uploaded local font file directly from your repository */
+    /* REQ FIX: Imports your uploaded local font file directly */
     @font-face {
       font-family: 'LocalSamarkan';
-      src: url('samarkan.TTF') format('truetype'); /* Match your exact filename/extension here if it is .otf */
+      src: url('samarkan.TTF') format('truetype');
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100vh; overflow: hidden; background: #000; }
     
+    /* Main horizontal slider viewport container */
     .slider-container {
       display: flex;
       width: 100%;
@@ -31,10 +31,12 @@
       -webkit-overflow-scrolling: touch;
     }
     
+    /* Hide native visual scrollbar elements across all desktop/mobile browsers */
     .slider-container::-webkit-scrollbar { display: none; }
     .slider-container { -ms-overflow-style: none; scrollbar-width: none; }
     
     .page-slide {
+      position: relative; /* Allows sub-elements to position themselves relative to the page */
       flex: 0 0 100%;
       width: 100%;
       height: 100vh;
@@ -48,118 +50,159 @@
       padding: 20px;
     }
     
-    /* REQ FIX: Sharp glass card layout with no background blur */
+    /* REQ FIX: Locked title layout in the top-left corner of every page */
+    .corner-title {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      font-family: 'LocalSamarkan', sans-serif;
+      font-size: 36px; /* Set to exactly 36px */
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8); /* Ensures it stays visible on light images */
+      z-index: 10;
+    }
+    
+    /* Clean transparent text-card box with NO header/headings */
     .text-card {
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.30);
       padding: 35px 25px;
       border-radius: 16px;
-      max-width: 1080px;
+      max-width: 480px;
       width: 100%;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       text-align: center;
       border: 1px solid rgba(255, 255, 255, 0.15); 
     }
     
-    /* REQ FIX: Custom font mapping and size set to 64px (Doubled) */
-    .font-samarkan {
-      font-family: 'LocalSamarkan', sans-serif !important;
-      font-weight: normal;
-      font-size: 80px; /* Doubled from 32px */
-      letter-spacing: 2px;
-      line-height: 1.1; /* Prevents giant text from overlapping its card layout */
-    }
-    
-    .font-greenth {
-      font-family: 'Greenth Diagonals', 'Greenth', sans-serif !important;
-      font-weight: bold;
-      font-size: 28px;
-      text-transform: uppercase; 
-    }
-
-    .text-card h2 {
-      margin-bottom: 14px; 
-      color: #ffffff; 
-    }
-    
+    /* Global Body Typography using Old Standard */
     .text-card p { 
       font-family: 'Old Standard TT', serif;
       color: #ffffff; 
       line-height: 1.6; 
-      font-size: 17px; 
+      font-size: 18px; 
       opacity: 0.95; 
+    }
+
+    /* REQ FIX: Floating animated arrow wrapper indicating swipe functionality */
+    .swipe-indicator {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      color: #ffffff;
+      font-size: 28px;
+      opacity: 0.7;
+      z-index: 10;
+      animation: bounceHorizontal 1.6s infinite;
+      pointer-events: none; /* Prevents touch blocking */
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7));
+    }
+
+    /* Keyframes that make the arrow fluidly pulse back and forth horizontally */
+    @keyframes bounceHorizontal {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(12px); }
     }
   </style>
 </head>
 <body>
 
+  <!-- HIDDEN BEFORE-START LOOP CLONE (Required to handle Page 1 swiping left to Page 11) -->
+  <div style="display:none;"></div>
+
   <div class="slider-container" id="mainSlider">
     
-    <!-- PAGE 1 -->
-    <div class="page-slide" style="background-image: url('https://i.ibb.co/PzcMSTxK/1.jpg');">
+    <!-- CLONE OF PAGE 11 (Placed at position 0 so swiping right/backward immediately lands here) -->
+    <div class="page-slide" style="background-image: url('PASTE_PAGE_11_DIRECT_LINK_HERE');">
+      <div class="corner-title">Samarkan</div>
       <div class="text-card">
-        <h2 class="font-samarkan">Natraj</h2>
-        <p>This choreography is an invitation to sit with the idea of not a clear end. Think about how things change but go through the similar stages. The stages vary in duration sometimes and sometimes they stay same for all. You are born, you preserve this life by eating and maintaining the shell you live in, you still are aging and nearing death everyday, you live in the illusion of life and it’s idea of living without believing there’s an end, and you eventually realize and release yourself out of this shell.</p>
-        <p>A rise of government and it’s creation starts with joint effort and building a constitution. In life there is proof that after it is created it succumbs to corruption in some or the other way (its destruction) before we try to preserve it and try to keep the system working. We live in illusion of it will change someday but finally realize that it was destroyed long ago and it’s time to rebuild it again.</p>
-        <p>A flower blooms, attracts bees to preserve itself, dries inside and keeps the color to soldier on but eventually falls and goes to the ground again.</p>
-        <p>There are small, big, significant and insignificant cycles all around that we see and will realize of while you encounter this piece.</p>
+        <p>This is the final page content loading seamlessly via backward swipe loop.</p>
       </div>
+      <div class="swipe-indicator">&#10142;</div>
+    </div>
+
+    <!-- PAGE 1 -->
+    <div class="page-slide" style="background-image: url('PASTE_PAGE_1_DIRECT_LINK_HERE');">
+      <div class="corner-title">Natraj</div>
+      <div class="text-card">
+        <p>Swipe left to advance forward to page 2, or swipe right to loop back to page 11.</p>
+      </div>
+      <div class="swipe-indicator">&#10142;</div>
     </div>
 
     <!-- PAGE 2 -->
     <div class="page-slide" style="background-image: url('PASTE_PAGE_2_DIRECT_LINK_HERE');">
+      <div class="corner-title">Natraj</div>
       <div class="text-card">
-        <h2 class="font-greenth">Page 2</h2>
-        <p>This is page 2. Your custom typography setups are fully active.</p>
+        <p>Your beautiful project text copy paragraphs will go inside these cards.</p>
       </div>
+      <div class="swipe-indicator">&#10142;</div>
     </div>
 
     <!-- PAGE 3 -->
-    <div class="page-slide" style="background-image: url('https://i.ibb.co/kgV0JqQf/2.png');">
-      <div class="text-card"><h2 class="font-greenth">Page 3</h2><p>Content placeholder.</p></div>
+    <div class="page-slide" style="background-image: url('PASTE_LINK_HERE');">
+      <div class="corner-title">Natraj</div>
+      <div class="text-card"><p>Content placeholder block text files go here.</p></div>
+      <div class="swipe-indicator">&#10142;</div>
     </div>
     <!-- PAGE 4 -->
     <div class="page-slide" style="background-image: url('PASTE_LINK_HERE');">
-      <div class="text-card"><h2 class="font-greenth">Page 4</h2><p>Content placeholder.</p></div>
+      <div class="corner-title">Samarkan</div>
+      <div class="text-card"><p>Content placeholder block text files go here.</p></div>
+      <div class="swipe-indicator">&#10142;</div>
     </div>
     <!-- PAGE 5 -->
     <div class="page-slide" style="background-image: url('PASTE_LINK_HERE');">
-      <div class="text-card"><h2 class="font-greenth">Page 5</h2><p>Content placeholder.</p></div>
+      <div class="corner-title">Samarkan</div>
+      <div class="text-card"><p>Content placeholder block text files go here.</p></div>
+      <div class="swipe-indicator">&#10142;</div>
     </div>
     <!-- PAGE 6 -->
     <div class="page-slide" style="background-image: url('PASTE_LINK_HERE');">
-      <div class="text-card"><h2 class="font-greenth">Page 6</h2><p>Content placeholder.</p></div>
+      <div class="corner-title">Samarkan</div>
+      <div class="text-card"><p>Content placeholder block text files go here.</p></div>
+      <div class="swipe-indicator">&#10142;</div>
     </div>
     <!-- PAGE 7 -->
     <div class="page-slide" style="background-image: url('PASTE_LINK_HERE');">
-      <div class="text-card"><h2 class="font-greenth">Page 7</h2><p>Content placeholder.</p></div>
+      <div class="corner-title">Samarkan</div>
+      <div class="text-card"><p>Content placeholder block text files go here.</p></div>
+      <div class="swipe-indicator">&#10142;</div>
     </div>
     <!-- PAGE 8 -->
     <div class="page-slide" style="background-image: url('PASTE_LINK_HERE');">
-      <div class="text-card"><h2 class="font-greenth">Page 8</h2><p>Content placeholder.</p></div>
+      <div class="corner-title">Samarkan</div>
+      <div class="text-card"><p>Content placeholder block text files go here.</p></div>
+      <div class="swipe-indicator">&#10142;</div>
     </div>
     <!-- PAGE 9 -->
     <div class="page-slide" style="background-image: url('PASTE_LINK_HERE');">
-      <div class="text-card"><h2 class="font-greenth">Page 9</h2><p>Content placeholder.</p></div>
+      <div class="corner-title">Samarkan</div>
+      <div class="text-card"><p>Content placeholder block text files go here.</p></div>
+      <div class="swipe-indicator">&#10142;</div>
     </div>
     <!-- PAGE 10 -->
     <div class="page-slide" style="background-image: url('PASTE_LINK_HERE');">
-      <div class="text-card"><h2 class="font-greenth">Page 10</h2><p>Content placeholder.</p></div>
+      <div class="corner-title">Samarkan</div>
+      <div class="text-card"><p>Content placeholder block text files go here.</p></div>
+      <div class="swipe-indicator">&#10142;</div>
     </div>
 
     <!-- PAGE 11 -->
     <div class="page-slide" style="background-image: url('PASTE_PAGE_11_DIRECT_LINK_HERE');">
+      <div class="corner-title">Samarkan</div>
       <div class="text-card">
-        <h2 class="font-greenth">Page 11</h2>
-        <p>This is the final page! Swiping past this card loops back to Page 1.</p>
+        <p>This is the final page! Swiping past this card loops smoothly back forward to Page 1.</p>
       </div>
+      <div class="swipe-indicator">&#10142;</div>
     </div>
 
-    <!-- SEAMLESS HIDDEN LOOP CLONE -->
+    <!-- CLONE OF PAGE 1 (Placed at the very end so forward looping functions seamlessly) -->
     <div class="page-slide" style="background-image: url('PASTE_PAGE_1_DIRECT_LINK_HERE');">
+      <div class="corner-title">Samarkan</div>
       <div class="text-card">
-        <h2 class="font-samarkan">Page 1</h2>
-        <p>Swipe left to advance forward to page 2.</p>
+        <p>Swipe left to advance forward to page 2, or swipe right to loop back to page 11.</p>
       </div>
+      <div class="swipe-indicator">&#10142;</div>
     </div>
 
   </div>
@@ -168,16 +211,30 @@
     const slider = document.getElementById('mainSlider');
     let isResetting = false;
     
+    // Set default initial page state load coordinates to point at Page 1 (skipping index 0 clone)
+    window.addEventListener('load', () => {
+      const pageWidth = slider.clientWidth;
+      slider.scrollTo({ left: pageWidth, behavior: 'instant' });
+    });
+
     slider.addEventListener('scroll', () => {
       if (isResetting) return;
       
       const pageWidth = slider.clientWidth;
-      const totalPages = 11; 
+      const totalUniquePages = 11; 
       
-      if (slider.scrollLeft >= pageWidth * totalPages) {
+      // FORWARD LOOP RESET: Landed on final end clone -> snap back to structural Page 1
+      if (slider.scrollLeft >= pageWidth * (totalUniquePages + 1)) {
         isResetting = true;
-        slider.scrollTo({ left: 0, behavior: 'instant' });
-        setTimeout(() => { isResetting = false; }, 50);
+        slider.scrollTo({ left: pageWidth, behavior: 'instant' });
+        setTimeout(() => { isResetting = false; }, 40);
+      }
+      
+      // REQ FIX: BACKWARD LOOP RESET: Landed on index 0 clone -> snap back to structural Page 11
+      if (slider.scrollLeft <= 0) {
+        isResetting = true;
+        slider.scrollTo({ left: pageWidth * totalUniquePages, behavior: 'instant' });
+        setTimeout(() => { isResetting = false; }, 40);
       }
     });
   </script>

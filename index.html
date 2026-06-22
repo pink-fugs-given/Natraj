@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://gstatic.com" crossorigin>
   <link href="https://googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-  <style>
+   <style>
     /* REQ FIX: Imports your uploaded local font file directly */
     @font-face {
       font-family: 'LocalSamarkan';
@@ -90,11 +90,19 @@
       right: 30px;
       color: #ffffff;
       font-size: 28px;
-      opacity: 0.7;
-      z-index: 10;
+      opacity: 0.8;
+      z-index: 20; /* ADD THIS: Brings arrow to the front layer */
+      cursor: pointer; /* ADD THIS: Shows clicking hand icon */
+      padding: 15px; /* ADD THIS: Makes it easier to tap on mobile */
       animation: bounceHorizontal 1.6s infinite;
-      pointer-events: none; /* Prevents touch blocking */
       filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7));
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    /* Visual tap feedback configuration */
+    .swipe-indicator:active {
+      opacity: 1;
+      transform: scale(0.9) translateX(5px);
     }
 
     /* Keyframes that make the arrow fluidly pulse back and forth horizontally */
@@ -103,6 +111,7 @@
       50% { transform: translateX(12px); }
     }
   </style>
+
 </head>
 <body>
 
@@ -127,7 +136,8 @@
 
 <p> Gradually, the bodies begin to fold back into themselves. <p/>
       </div>
-      <div class="swipe-indicator">&#10142;</div>
+      <div class="swipe-indicator" onclick="nextPage()">&#10142;</div>
+
     </div>
 
     <!-- PAGE 1 -->
@@ -146,7 +156,7 @@
 
 <p>A shoulder slowly catches the motion. <p/>
       </div>
-      <div class="swipe-indicator">&#10142;</div>
+      <div class="swipe-indicator" onclick="nextPage()">&#10142;</div>
     </div>
 
     <!-- PAGE 2 -->
@@ -165,7 +175,7 @@
 
 <p> Two hands arrive at the same place. <p/>
       </div>
-      <div class="swipe-indicator">&#10142;</div>
+      <div class="swipe-indicator" onclick="nextPage()">&#10142;</div>
     </div>
 
     <!-- PAGE 3 -->
@@ -188,7 +198,7 @@
 
 <p> Repetition emerges. Patterns return. The circles settle into systems. <p/> 
       </div>
-      <div class="swipe-indicator">&#10142;</div>
+      <div class="swipe-indicator" onclick="nextPage()">&#10142;</div>
     </div>
     <!-- PAGE 4 -->
     <div class="page-slide" style="background-image: url('https://i.ibb.co/PzcMSTxK/1.jpg');">
@@ -208,7 +218,7 @@
 
 <p> The clicks multiply. One body finds another. Then another. Then another. <p/>
       </div>
-      <div class="swipe-indicator">&#10142;</div>
+      <div class="swipe-indicator" onclick="nextPage()">&#10142;</div>
     </div>
     <!-- PAGE 5 -->
     <div class="page-slide" style="background-image: url('https://i.ibb.co/0jnWLfzF/5.jpg');">
@@ -230,7 +240,7 @@
 
 <p> The system breathes. Expands. Contracts. Reorganises itself. <p/>
       </div>
-      <div class="swipe-indicator">&#10142;</div>
+      <div class="swipe-indicator" onclick="nextPage()">&#10142;</div>
     </div>
     <!-- PAGE 6 -->
     <div class="page-slide" style="background-image: url('https://i.ibb.co/j9Djn3qM/6.jpg');">
@@ -250,7 +260,7 @@
 
 <p> The effort of preservation becomes impossible. <p/> 
       </div>
-      <div class="swipe-indicator">&#10142;</div>
+      <div class="swipe-indicator" onclick="nextPage()">&#10142;</div>
     </div>
     <!-- PAGE 7 -->
     <div class="page-slide" style="background-image: url('https://i.ibb.co/HTV0JGnM/7.jpg');">
@@ -272,7 +282,7 @@
 
 <p> Fragments of movement remain. <p/>
       </div>
-      <div class="swipe-indicator">&#10142;</div>
+      <div class="swipe-indicator" onclick="nextPage()">&#10142;</div>
     </div>
     <!-- PAGE 8 -->
     <div class="page-slide" style="background-image: url('https://i.ibb.co/zh69LYYV/9.jpg');">
@@ -292,7 +302,7 @@
 
 <p> Attention drifts elsewhere. <p/>
       </div>
-      <div class="swipe-indicator">&#10142;</div>
+      <div class="swipe-indicator" onclick="nextPage()">&#10142;</div>
     </div>
     <!-- PAGE 9 -->
     <div class="page-slide" style="background-image: url('https://i.ibb.co/hxZsYkQC/8.jpg');">
@@ -312,7 +322,7 @@
 
 <p> The illusion starts to dissolve. <p/> 
       </div>
-      <div class="swipe-indicator">&#10142;</div>
+      <div class="swipe-indicator" onclick="nextPage()">&#10142;</div>
     </div>
     <!-- PAGE 10 -->
     <div class="page-slide" style="background-image: url('https://i.ibb.co/d4Bpg9hz/10.jpg');">
@@ -330,7 +340,7 @@
 
 <p> They no longer sustain. They no longer destroy. They release. <p/>
       </div>
-      <div class="swipe-indicator">&#10142;</div>
+      <div class="swipe-indicator" onclick="nextPage()">&#10142;</div>
     </div>
 
     <!-- PAGE 11 -->
@@ -349,7 +359,7 @@
 
 <p> Gradually, the bodies begin to fold back into themselves. <p/>
       </div>
-      <div class="swipe-indicator">&#10142;</div>
+      <div class="swipe-indicator" onclick="nextPage()">&#10142;</div>
     </div>
 
     <!-- CLONE OF PAGE 1 (Placed at the very end so forward looping functions seamlessly) -->
@@ -368,7 +378,7 @@
 
 <p>A shoulder slowly catches the motion. <p/>
       </div>
-      <div class="swipe-indicator">&#10142;</div>
+      <div class="swipe-indicator" onclick="nextPage()">&#10142;</div>
     </div>
 
   </div>

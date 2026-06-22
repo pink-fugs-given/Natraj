@@ -392,7 +392,11 @@
       const pageWidth = slider.clientWidth;
       slider.scrollTo({ left: pageWidth, behavior: 'instant' });
     });
-
+ function nextPage() {
+      if (isResetting) return;
+      const pageWidth = slider.clientWidth;
+      slider.scrollBy({ left: pageWidth, behavior: 'smooth' });
+    }
     slider.addEventListener('scroll', () => {
       if (isResetting) return;
       
